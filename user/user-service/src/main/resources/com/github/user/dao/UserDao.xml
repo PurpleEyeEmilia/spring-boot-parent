@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.user.dao.UserDao">
+    <select id="getUserInfo" parameterType="java.lang.Long" resultType="com.github.user.entity.User">
+        select * from user where id = #{id}
+    </select>
+
+    <!-- insert user (kid, name, phone) values (#{kid}, #{name}, #{phone}) -->
+    <insert id="insertUser" parameterType="com.github.user.entity.User" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
+        insert user (name, phone) values (#{name}, #{phone})
+    </insert>
+
+    <select id="getUserPage" parameterType="com.github.user.dto.UserDto" resultType="com.github.user.entity.User">
+        select * from user order by id desc
+    </select>
+</mapper>
